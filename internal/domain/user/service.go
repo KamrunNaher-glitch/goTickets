@@ -8,7 +8,6 @@ import (
 
 var ErrInvalidCredentials = fmt.Errorf("Invalid Email or Password")
 
-
 type service struct {
 	repo Repository
 	jwtService auth.JWTService
@@ -66,8 +65,6 @@ func (s *service) LoginUser(req dto.LoginRequest)(*dto.Response,error){
 		if err != nil {
 			return nil , fmt.Errorf("failed to generate token :%w",err)
 		}
-
-
 
 	response := dto.Response {
 		ID: user.ID,

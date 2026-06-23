@@ -2,12 +2,8 @@ package main
 
 import (
 	"gotickets/internal/config"
-	"gotickets/internal/server"
-	
+	"gotickets/internal/server"	
 )
-
-
-
 
 func main() {
 	// Load Environment Variables
