@@ -3,8 +3,11 @@ package server
 import (
 	"fmt"
 	"gotickets/internal/config"
-	"gotickets/internal/user"
+	"gotickets/internal/domain/event"
+	"os/user"
+
 	"net/http"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v5"
 	"github.com/labstack/echo/v5/middleware"
@@ -22,7 +25,7 @@ func (cv *CustomValidator) Validate(i any) error {
 	return nil
 }
 func Start(db *gorm.DB,cfg *config.Config){
-	db.AutoMigrate(&user.User{})
+	db.AutoMigrate(&user.User{},&event.Event{})
 	e := echo.New()
 	e.Validator = &CustomValidator{validator: validator.New()}
 	e.Use(middleware.RequestLogger())
@@ -32,6 +35,7 @@ func Start(db *gorm.DB,cfg *config.Config){
 	})
 	// user routes Registration
 	user.RegisterRoutes(e, db)
+	event.RegisterRoutes(e, db)
 
 	port := fmt.Sprintf(":%s", cfg.Port)
 	if err := e.Start(port); err != nil {

@@ -30,7 +30,6 @@ func (r *repository) Create(event *Event) error {
 
 func (r *repository) GetAll() ([]*Event, error) {
 	var events []*Event
-
 	err := r.db.Find(&events).Error
 	if err != nil {
 		return nil, err

@@ -2,9 +2,11 @@ package user
 
 import (
 	"errors"
+	"gotickets/internal/domain/event/dto"
 	"gotickets/internal/httpresponse"
-	"gotickets/internal/user/dto"
+
 	"net/http"
+
 	"github.com/labstack/echo/v5"
 )
 
@@ -55,7 +57,7 @@ func (h *handler) CreateUser(c *echo.Context) error {
 return c.JSON(http.StatusCreated,response)
 }
 func (h *handler) LoginUser(c *echo.Context) error {
-	var req dto.LoginRequest 
+	var req dto.LoginRequest
 
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest,httpresponse.Error{
