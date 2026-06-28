@@ -8,6 +8,8 @@ require (
 	gorm.io/driver/postgres v1.6.0
 )
 
+require github.com/google/uuid v1.6.0 // indirect
+
 require (
 	github.com/gabriel-vasile/mimetype v1.4.13 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
